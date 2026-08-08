@@ -1,4 +1,5 @@
 import React from "react";
+import { asset } from "@/lib/asset";
 
 /**
  * MemorabiliaWall — the About-section wall board: a few personal keepsakes
@@ -46,7 +47,7 @@ export function MemorabiliaWall({ items = [], className = "", style = {}, ...res
               aspectRatio: it.type === "vinyl" ? "1 / 1" : "2 / 3",
               borderRadius: it.type === "vinyl" ? "50%" : "var(--radius-md)",
               background: it.image
-                ? `center/cover url(${it.image})`
+                ? `center/cover url(${asset(it.image)})`
                 : it.type === "vinyl"
                   ? "repeating-radial-gradient(circle, var(--graphite-800) 0 3px, var(--graphite-900) 3px 6px)"
                   : "linear-gradient(160deg, var(--graphite-800), var(--graphite-900))",

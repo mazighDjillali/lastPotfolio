@@ -3,6 +3,7 @@
 import React from "react";
 import { Badge } from "../core/Badge.jsx";
 import { Chip } from "./Chip.jsx";
+import { asset } from "@/lib/asset";
 
 /**
  * PosterCard — the poster-style card used for the "Favorites" section
@@ -50,7 +51,7 @@ export function PosterCard({
       <div style={{ position: "relative", aspectRatio: ratio, width: "100%", background: "var(--black)" }}>
         {image && (
           <img
-            src={image}
+            src={asset(image)}
             alt={title}
             style={{
               position: "absolute",

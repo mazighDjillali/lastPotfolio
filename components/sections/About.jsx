@@ -1,6 +1,7 @@
 import { Pill } from "../ds/core/Pill.jsx";
 import { Chip } from "../ds/data-display/Chip.jsx";
 import { Reveal } from "../site/Reveal.jsx";
+import { asset } from "@/lib/asset";
 import { person, principles, education } from "@/lib/data";
 
 /* the mono uppercase kicker, matching the hero and the Projects grid */
@@ -60,7 +61,7 @@ export function About() {
                 }}
               >
                 <img
-                  src="/portrait.jpeg"
+                  src={asset("/portrait.jpeg")}
                   alt={`Portrait of ${person.name}`}
                   style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "cover" }}
                 />
