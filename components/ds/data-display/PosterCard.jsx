@@ -53,6 +53,8 @@ export function PosterCard({
           <img
             src={asset(image)}
             alt={title}
+            loading="lazy"
+            decoding="async"
             style={{
               position: "absolute",
               inset: 0,

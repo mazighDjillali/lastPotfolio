@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Pill } from "../ds/core/Pill.jsx";
 import { Button } from "../ds/core/Button.jsx";
-import { DeskScene } from "../site/DeskScene.jsx";
+import { DeskSceneLazy } from "../site/DeskSceneLazy.jsx";
 import { person } from "@/lib/data";
 
 /* The title is split into the lines the reveal animates: each line rides up
@@ -80,7 +80,7 @@ export function Hero() {
         {/* the product-shot slot: MeetSponsors puts a framed mockup under the
             headline, and the desk scene takes that role here */}
         <div className="hero-scene hero-enter" style={enter(860)}>
-          <DeskScene className="desk-scene" />
+          <DeskSceneLazy className="desk-scene" />
         </div>
 
         <div className="hero-actions hero-enter" style={enter(980)}>

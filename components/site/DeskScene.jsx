@@ -399,9 +399,11 @@ export function DeskScene({ className = "" }) {
         // "percentage" -> PCFShadowMap. The default (`shadows`) maps to
         // PCFSoftShadowMap, which three r185 deprecates and silently downgrades.
         shadows="percentage"
-        dpr={[1, 2]}
+        /* cap at 1.75: on 2-3x phone screens the extra density is invisible
+           at this scene scale, but the fill-rate cost is very real */
+        dpr={[1, 1.75]}
         camera={{ position: [0, 1.6, 4.6], fov: 42 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
         <FitFrame />
 

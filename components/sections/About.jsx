@@ -63,7 +63,11 @@ export function About() {
                 <img
                   src={asset("/portrait.jpeg")}
                   alt={`Portrait of ${person.name}`}
-                  style={{ width: "100%", aspectRatio: "1 / 1", objectFit: "cover" }}
+                  loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={800}
+                  style={{ width: "100%", height: "auto", aspectRatio: "1 / 1", objectFit: "cover" }}
                 />
               </div>
 

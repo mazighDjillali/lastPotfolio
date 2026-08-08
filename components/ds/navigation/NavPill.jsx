@@ -195,7 +195,9 @@ export function NavPill({
                   flexDirection: "column",
                   gap: 2,
                   borderRadius: "var(--radius-2xl)",
-                  background: "var(--glass-fill-strong)",
+                  /* near-solid: the page must not bleed through the open menu.
+                     The blur only treats the remaining sliver of transparency. */
+                  background: "rgba(18, 20, 25, 0.94)",
                   border: "1px solid var(--glass-border-strong)",
                   WebkitBackdropFilter: "var(--glass-backdrop-lg)",
                   backdropFilter: "var(--glass-backdrop-lg)",

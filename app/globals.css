@@ -346,7 +346,11 @@ body {
 
 body {
   min-height: 100vh;
+  /* hex fallbacks first: a browser without oklch() drops the var()
+     declarations and would otherwise paint white-on-white */
+  background: #000;
   background: var(--bg-canvas);
+  color: #d8dade;
   color: var(--text-secondary);
   font-family: var(--font-sans);
   font-size: var(--fs-base);
@@ -354,9 +358,13 @@ body {
   line-height: var(--lh-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* iOS Safari inflates text in landscape without this */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 ::selection {
+  background: rgba(96, 165, 250, 0.4);
   background: color-mix(in oklch, var(--blue-400) 40%, transparent);
   color: var(--white);
 }
@@ -448,7 +456,9 @@ img {
 .hero {
   position: relative;
   display: flex;
-  /* fills the viewport: svh so mobile browser chrome doesn't clip the desk */
+  /* fills the viewport: svh so mobile browser chrome doesn't clip the desk;
+     the vh line above it is the fallback where svh isn't understood */
+  min-height: 100vh;
   min-height: 100svh;
   padding-block: 7.5rem var(--space-5);
   background: var(--nebula);
