@@ -59,7 +59,7 @@ export function SiteNav() {
         }
         setActive(idx);
       },
-      { rootMargin: "-40% 0px -55% 0px" }
+      { rootMargin: "-40% 0px -55% 50px" }
     );
     sections.forEach((s) => io.observe(s));
     return () => io.disconnect();
