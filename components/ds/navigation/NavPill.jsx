@@ -31,6 +31,11 @@ export function NavPill({
   const itemRefs = React.useRef([]);
   const navRef = React.useRef(null);
   const [ind, setInd] = React.useState({ left: 0, width: 0, ready: false });
+  // gates the sliding transition: the indicator is first *placed* at the
+  // active item with no transition, so it fades in there instead of gliding
+  // in from the (0,0) corner. A short timer then arms the slide for real
+  // clicks and scroll-spy changes.
+  const [animate, setAnimate] = React.useState(false);
 
   // Collapse to a menu when the row no longer fits.
   const [isMobile, setIsMobile] = React.useState(false);
@@ -58,6 +63,14 @@ export function NavPill({
   }, [active, isMobile]);
 
   React.useLayoutEffect(() => { measure(); }, [measure, items]);
+
+  // arm the slide only once the indicator has been placed, and only after a
+  // beat so the initial placement paints without a transition first
+  React.useEffect(() => {
+    if (isMobile || !ind.ready || animate) return;
+    const t = setTimeout(() => setAnimate(true), 240);
+    return () => clearTimeout(t);
+  }, [isMobile, ind.ready, animate]);
   React.useEffect(() => {
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
@@ -94,6 +107,10 @@ export function NavPill({
   };
 
   const transition = "var(--dur-slow) var(--ease-spring)";
+  // the slide is only in the transition list once armed; opacity always is, so
+  // the highlight can fade in on its first placement without gliding
+  const slide = animate ? `left ${transition}, width ${transition}, ` : "";
+  const indTransition = `${slide}opacity var(--dur-base) var(--ease-out)`;
 
   const navStyle = {
     position: "relative",
@@ -265,7 +282,7 @@ export function NavPill({
                 background: "var(--glass-fill-strong)",
                 boxShadow: "var(--glass-specular), 0 0 24px rgba(34,211,238,0.18)",
                 opacity: ind.ready ? 1 : 0,
-                transition: `left ${transition}, width ${transition}, opacity var(--dur-base) var(--ease-out)`,
+                transition: indTransition,
                 zIndex: 0,
               }}
             />
@@ -282,7 +299,7 @@ export function NavPill({
                 background: "var(--white)",
                 boxShadow: "var(--glow-blue-soft)",
                 opacity: ind.ready ? 1 : 0,
-                transition: `left ${transition}, width ${transition}, opacity var(--dur-base) var(--ease-out)`,
+                transition: indTransition,
                 zIndex: 3,
               }}
             />
