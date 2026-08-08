@@ -800,6 +800,47 @@ img {
   }
 }
 
+/* Phones: shrink the hero so title + desk + CTAs + meta still fit one screen. */
+@media (max-width: 560px) {
+  /* trim the nav clearance a little to buy vertical room on short phones */
+  .hero {
+    padding-block: 5.5rem var(--space-6);
+  }
+
+  .hero-stage {
+    gap: var(--space-4);
+  }
+
+  /* smaller headline: 2.4rem was too tall here and pushed the desk off-screen */
+  .hero-title {
+    font-size: clamp(1.9rem, 8.5vw, 2.75rem);
+    line-height: 1.08;
+  }
+
+  .hero-lede {
+    font-size: var(--fs-base);
+  }
+
+  /* the desk takes less of the column so the CTAs stay above the fold */
+  .hero-scene {
+    min-height: 7rem;
+    margin-block: calc(-1 * var(--space-4));
+  }
+
+  /* full-width stacked CTAs — the MeetSponsors mobile pattern, and it stops
+     the two pills from crowding at ~320px */
+  .hero-actions {
+    width: 100%;
+    max-width: 20rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions > a {
+    width: 100%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

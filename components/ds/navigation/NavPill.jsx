@@ -106,11 +106,14 @@ export function NavPill({
     ...style,
   };
 
-  const transition = "var(--dur-slow) var(--ease-spring)";
+  // Literal timings, NOT css vars: some engines (notably WebKit) fail to
+  // resolve a var() inside the `transition` shorthand and drop the whole
+  // transition, so the pill jumps with no slide. Literals animate everywhere.
+  const transition = "600ms cubic-bezier(0.34, 1.56, 0.64, 1)";
   // the slide is only in the transition list once armed; opacity always is, so
   // the highlight can fade in on its first placement without gliding
   const slide = animate ? `left ${transition}, width ${transition}, ` : "";
-  const indTransition = `${slide}opacity var(--dur-base) var(--ease-out)`;
+  const indTransition = `${slide}opacity 300ms cubic-bezier(0.16, 1, 0.3, 1)`;
 
   const navStyle = {
     position: "relative",
@@ -323,7 +326,7 @@ export function NavPill({
                       textDecoration: "none",
                       whiteSpace: "nowrap",
                       color: isActive ? "var(--white)" : "var(--text-secondary)",
-                      transition: "color var(--dur-base) var(--ease-out)",
+                      transition: "color 300ms cubic-bezier(0.16, 1, 0.3, 1)",
                     }}
                   >
                     {item.label}
