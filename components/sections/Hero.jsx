@@ -55,7 +55,11 @@ export function Hero() {
         <Pill className="hero-enter" style={enter(0)}>
           {person.headline}
         </Pill>
-
+        <div className="hero-meta hero-enter" style={enter(1100)}>
+          <span>
+            <span className="dot">●</span> Open to opportunities
+          </span>
+        </div>
         <h1 className="hero-title" aria-label={TITLE_TEXT}>
           {TITLE.map((line, li) => (
             <span className="line" key={li} aria-hidden="true">
@@ -92,12 +96,7 @@ export function Hero() {
           </Button>
         </div>
 
-        <div className="hero-meta hero-enter" style={enter(1100)}>
-          <span>
-            <span className="dot">●</span> Open to opportunities
-          </span>
-          <span>{person.location}</span>
-        </div>
+
       </div>
     </section>
   );
