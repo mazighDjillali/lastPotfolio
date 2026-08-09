@@ -402,12 +402,10 @@ img {
   width: 100%;
   max-width: var(--container-max);
   margin-inline: auto;
-  padding-inline: var(--container-pad);
 }
 
 .section {
   padding-block: var(--space-20);
-  scroll-margin-top: 96px;
 }
 
 .section-head {
@@ -614,11 +612,11 @@ img {
   align-items: stretch;
 }
 
-.grid-projects > .reveal {
+.grid-projects>.reveal {
   display: flex;
 }
 
-.grid-projects > .reveal > * {
+.grid-projects>.reveal>* {
   width: 100%;
 }
 
@@ -802,6 +800,7 @@ img {
 
 /* Phones: shrink the hero so title + desk + CTAs + meta still fit one screen. */
 @media (max-width: 560px) {
+
   /* trim the nav clearance a little to buy vertical room on short phones */
   .hero {
     padding-block: 5.5rem var(--space-6);
@@ -834,7 +833,7 @@ img {
     align-items: stretch;
   }
 
-  .hero-actions > a {
+  .hero-actions>a {
     width: 100%;
   }
 }
