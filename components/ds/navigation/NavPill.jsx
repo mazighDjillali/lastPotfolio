@@ -110,9 +110,10 @@ export function NavPill({
   // resolve a var() inside the `transition` shorthand and drop the whole
   // transition, so the pill jumps with no slide. Literals animate everywhere.
   const transition = "600ms cubic-bezier(0.34, 1.56, 0.64, 1)";
-  // the slide is only in the transition list once armed; opacity always is, so
-  // the highlight can fade in on its first placement without gliding
-  const slide = animate ? `left ${transition}, width ${transition}, ` : "";
+  // Movement rides on `transform`, not `left`: transform is composited, so it
+  // animates on the GPU and stays smooth on engines that handle animated
+  // layout properties poorly. `width` still has to animate for the resize.
+  const slide = animate ? `transform ${transition}, width ${transition}, ` : "";
   const indTransition = `${slide}opacity 300ms cubic-bezier(0.16, 1, 0.3, 1)`;
 
   const navStyle = {
@@ -279,8 +280,10 @@ export function NavPill({
                 position: "absolute",
                 top: 0,
                 bottom: 0,
-                left: ind.left,
+                left: 0,
                 width: ind.width,
+                transform: `translateX(${ind.left}px)`,
+                willChange: "transform, width",
                 borderRadius: "var(--radius-full)",
                 background: "var(--glass-fill-strong)",
                 boxShadow: "var(--glass-specular), 0 0 24px rgba(34,211,238,0.18)",
@@ -296,8 +299,11 @@ export function NavPill({
                 position: "absolute",
                 top: 0,
                 height: 3,
-                left: ind.left + ind.width / 2 - ind.width / 4,
+                left: 0,
                 width: ind.width / 2,
+                /* centred over the highlight: left + width/2 - (width/2)/2 */
+                transform: `translateX(${ind.left + ind.width / 4}px)`,
+                willChange: "transform, width",
                 borderRadius: "var(--radius-full)",
                 background: "var(--white)",
                 boxShadow: "var(--glow-blue-soft)",
