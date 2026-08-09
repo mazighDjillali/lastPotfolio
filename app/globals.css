@@ -498,9 +498,13 @@ img {
 
 /* The title still rides up out of per-line masks, but it now sits in normal
    flow at the centre of the stage rather than behind an illustration. */
+/* The title is sized by whichever viewport axis is tighter. Width alone made
+   a laptop (wide but short, e.g. 1366x768) render the full 4.75rem headline
+   with no vertical room left, squashing the desk. min(vw, vh) keeps the
+   title/desk proportion roughly constant across aspect ratios. */
 .hero-title {
   max-width: 54rem;
-  font-size: clamp(2.4rem, 6.4vw, 4.75rem);
+  font-size: clamp(2.4rem, min(6.4vw, 7.2vh), 4.75rem);
   font-weight: var(--fw-semibold);
   letter-spacing: -0.028em;
   line-height: 1.06;
@@ -852,6 +856,70 @@ img {
 
   .hero-title {
     font-size: clamp(1.35rem, 6.6vw, 1.75rem);
+  }
+}
+
+/* ============================================================
+   Laptops: wide but short. These steps key off viewport HEIGHT,
+   not width — a 14" screen is roomy horizontally and cramped
+   vertically, which is exactly what squeezes the desk scene.
+   min-width guards keep them off phones, which have their own
+   width-based steps above.
+   ============================================================ */
+
+/* ~15" and small desktop windows (approx. 1512x982, 1440x900) */
+@media (min-width: 861px) and (max-height: 900px) {
+  .hero {
+    padding-block: 6.5rem var(--space-4);
+  }
+
+  .hero-stage {
+    gap: var(--space-5);
+  }
+}
+
+/* ~14" laptops (approx. 1536x864, 1366x768 with browser chrome) */
+@media (min-width: 861px) and (max-height: 820px) {
+  .hero {
+    padding-block: 6rem var(--space-3);
+  }
+
+  .hero-stage {
+    gap: var(--space-4);
+  }
+
+  /* let the desk keep shrinking gracefully rather than forcing the
+     hero taller than the screen */
+  .hero-scene {
+    min-height: 9rem;
+  }
+}
+
+/* short laptop viewports (approx. 1366x768 with a toolbar, 1280x720) */
+@media (min-width: 861px) and (max-height: 720px) {
+  .hero {
+    /* the fixed nav ends at 72px, so this still clears it */
+    padding-block: 5.5rem var(--space-3);
+  }
+
+  .hero-stage {
+    gap: var(--space-3);
+  }
+
+  .hero-scene {
+    min-height: 7rem;
+    margin-block: calc(-1 * var(--space-4));
+  }
+}
+
+/* very short windows — half-height splits, small netbooks */
+@media (min-width: 861px) and (max-height: 620px) {
+  .hero {
+    padding-block: 5rem var(--space-2);
+  }
+
+  .hero-scene {
+    min-height: 5rem;
   }
 }
 
