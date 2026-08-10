@@ -21,7 +21,7 @@ const kicker = {
 
 export function Projects() {
   return (
-    <section id="projects" className="section">
+    <section id="projects" className="section" aria-label="Projects">
       <div className="container">
         <Reveal>
           <div className="section-head section-head-center">

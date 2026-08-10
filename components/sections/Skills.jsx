@@ -10,7 +10,7 @@ import { skills } from "@/lib/data";
  */
 export function Skills() {
   return (
-    <section id="skills" className="section">
+    <section id="skills" className="section" aria-label="Skills and technologies">
       <div className="container">
         <Reveal>
           <div className="section-head">

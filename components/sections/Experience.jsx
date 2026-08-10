@@ -6,7 +6,7 @@ import { experiences } from "@/lib/data";
 
 export function Experience() {
   return (
-    <section id="experience" className="section">
+    <section id="experience" className="section" aria-label="Work experience">
       <div className="container">
         <Reveal>
           <div className="section-head">

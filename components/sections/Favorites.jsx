@@ -5,7 +5,7 @@ import { favorites } from "@/lib/data";
 
 export function Favorites() {
   return (
-    <section id="favorites" className="section">
+    <section id="favorites" className="section" aria-label="Personal favorites">
       <div className="container">
         <Reveal>
           <div className="section-head">

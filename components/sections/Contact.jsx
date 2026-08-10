@@ -20,7 +20,7 @@ const kicker = {
 };
 export function Contact() {
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="section" aria-label="Contact">
       <div className="container">
         <Reveal>
           <div className="section-head section-head-center">

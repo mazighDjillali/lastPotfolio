@@ -37,7 +37,7 @@ const label = {
 
 export function About() {
   return (
-    <section id="about" className="section">
+    <section id="about" className="section" aria-label="About">
       <div className="container">
         <Reveal>
           <div className="section-head section-head-center">

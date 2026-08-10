@@ -50,7 +50,7 @@ const enter = (ms) => ({ animationDelay: `${ms}ms` });
 
 export function Hero() {
   return (
-    <section id="home" className="hero">
+    <section id="home" className="hero" aria-label="Introduction">
       <div className="container hero-stage">
         {/* left column: the copy */}
         <div className="hero-copy">
@@ -58,7 +58,13 @@ export function Hero() {
             {person.headline}
           </Pill>
 
-          <h1 className="hero-title" aria-label={TITLE_TEXT}>
+          <h1 className="hero-title">
+            {/* the real, indexable heading text: identity for SEO and screen
+                readers. The animated slogan below is decorative (aria-hidden
+                per line), so this is what the H1 actually "says". */}
+            <span className="sr-only">
+              {person.name} — {person.headline}. {TITLE_TEXT}.
+            </span>
             {TITLE.map((line, li) => (
               <span className="line" key={li} aria-hidden="true">
                 <span className="line-inner" style={{ "--i": li }}>
