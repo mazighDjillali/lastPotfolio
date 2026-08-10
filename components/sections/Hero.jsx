@@ -52,51 +52,53 @@ export function Hero() {
   return (
     <section id="home" className="hero">
       <div className="container hero-stage">
-        <Pill className="hero-enter" style={enter(0)}>
-          {person.headline}
-        </Pill>
-        <div className="hero-meta hero-enter" style={enter(1100)}>
-          <span>
-            <span className="dot">●</span> Open to opportunities
-          </span>
-        </div>
-        <h1 className="hero-title" aria-label={TITLE_TEXT}>
-          {TITLE.map((line, li) => (
-            <span className="line" key={li} aria-hidden="true">
-              <span className="line-inner" style={{ "--i": li }}>
-                {line.map((word, wi) => (
-                  <Fragment key={wi}>
-                    {wi > 0 && " "}
-                    <span className="word" data-accent={word.accent || undefined}>
-                      {word.letters.map((l, i) => (
-                        <span key={i} className="letter" style={l.p === null ? undefined : { "--p": l.p }}>
-                          {l.ch}
-                        </span>
-                      ))}
-                    </span>
-                  </Fragment>
-                ))}
-              </span>
-            </span>
-          ))}
-        </h1>
+        {/* left column: the copy */}
+        <div className="hero-copy">
+          <Pill className="hero-enter" style={enter(0)}>
+            {person.headline}
+          </Pill>
 
-        {/* the product-shot slot: MeetSponsors puts a framed mockup under the
-            headline, and the desk scene takes that role here */}
+          <h1 className="hero-title" aria-label={TITLE_TEXT}>
+            {TITLE.map((line, li) => (
+              <span className="line" key={li} aria-hidden="true">
+                <span className="line-inner" style={{ "--i": li }}>
+                  {line.map((word, wi) => (
+                    <Fragment key={wi}>
+                      {wi > 0 && " "}
+                      <span className="word" data-accent={word.accent || undefined}>
+                        {word.letters.map((l, i) => (
+                          <span key={i} className="letter" style={l.p === null ? undefined : { "--p": l.p }}>
+                            {l.ch}
+                          </span>
+                        ))}
+                      </span>
+                    </Fragment>
+                  ))}
+                </span>
+              </span>
+            ))}
+          </h1>
+
+          <div className="hero-actions hero-enter" style={enter(980)}>
+            <Button href="#projects" size="lg" style={pill}>
+              See my work
+            </Button>
+            <Button href="#contact" variant="glass" size="lg" style={pill}>
+              Get in touch
+            </Button>
+          </div>
+
+          <div className="hero-meta hero-enter" style={enter(1100)}>
+            <span>
+              <span className="dot">●</span> Open to opportunities
+            </span>
+          </div>
+        </div>
+
+        {/* right column: the 3D desk */}
         <div className="hero-scene hero-enter" style={enter(860)}>
           <DeskSceneLazy className="desk-scene" />
         </div>
-
-        <div className="hero-actions hero-enter" style={enter(980)}>
-          <Button href="#projects" size="lg" style={pill}>
-            See my work
-          </Button>
-          <Button href="#contact" variant="glass" size="lg" style={pill}>
-            Get in touch
-          </Button>
-        </div>
-
-
       </div>
     </section>
   );

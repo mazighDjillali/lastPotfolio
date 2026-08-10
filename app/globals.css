@@ -472,7 +472,8 @@ img {
   animation: fade-up 700ms var(--ease-out) both;
 }
 
-/* one centred column: kicker, title, lede, actions, meta */
+/* Base (phones): a single centred column — copy stacked over the desk.
+   The two-column split (copy left, desk right) kicks in at >=861px below. */
 .hero-stage {
   position: relative;
   flex: 1;
@@ -483,6 +484,15 @@ img {
   text-align: center;
   gap: var(--space-6);
   min-height: 0;
+}
+
+/* the text column: kicker, title, actions, meta */
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  min-width: 0;
 }
 
 /* Cinematic title entrance:
@@ -601,6 +611,45 @@ img {
 
 .desk-scene canvas {
   display: block;
+}
+
+/* Two-column hero (tablets and up): copy on the left, desk on the right.
+   The grid row is forced to fill the stage height (grid-template-rows 1fr),
+   so the scene column is tall and the desk gets the whole right half. */
+@media (min-width: 861px) {
+  .hero-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
+    text-align: left;
+    gap: clamp(var(--space-8), 5vw, var(--space-16));
+  }
+
+  .hero-copy {
+    align-items: flex-start;
+    justify-content: center; /* vertically centre the copy beside the desk */
+    text-align: left;
+    height: 100%;
+  }
+
+  /* a touch smaller so the headline sits comfortably in half the width */
+  .hero-title {
+    font-size: clamp(2.2rem, min(4.7vw, 7.2vh), 4.25rem);
+  }
+
+  .hero-actions,
+  .hero-meta {
+    justify-content: flex-start;
+  }
+
+  /* the scene fills its tall cell instead of being pulled up under the title */
+  .hero-scene {
+    margin: 0;
+    max-width: none;
+    min-height: 0;
+    height: 100%;
+  }
 }
 
 /* ---- WorkstationScene is no longer mounted, but the component is still in
@@ -867,14 +916,13 @@ img {
    width-based steps above.
    ============================================================ */
 
+/* These only trim the hero's vertical padding — the two-column grid stretches
+   the desk to whatever height is left, so the scene needs no per-height tweak. */
+
 /* ~15" and small desktop windows (approx. 1512x982, 1440x900) */
 @media (min-width: 861px) and (max-height: 900px) {
   .hero {
     padding-block: 6.5rem var(--space-4);
-  }
-
-  .hero-stage {
-    gap: var(--space-5);
   }
 }
 
@@ -882,16 +930,6 @@ img {
 @media (min-width: 861px) and (max-height: 820px) {
   .hero {
     padding-block: 6rem var(--space-3);
-  }
-
-  .hero-stage {
-    gap: var(--space-4);
-  }
-
-  /* let the desk keep shrinking gracefully rather than forcing the
-     hero taller than the screen */
-  .hero-scene {
-    min-height: 9rem;
   }
 }
 
@@ -901,25 +939,12 @@ img {
     /* the fixed nav ends at 72px, so this still clears it */
     padding-block: 5.5rem var(--space-3);
   }
-
-  .hero-stage {
-    gap: var(--space-3);
-  }
-
-  .hero-scene {
-    min-height: 7rem;
-    margin-block: calc(-1 * var(--space-4));
-  }
 }
 
 /* very short windows — half-height splits, small netbooks */
 @media (min-width: 861px) and (max-height: 620px) {
   .hero {
     padding-block: 5rem var(--space-2);
-  }
-
-  .hero-scene {
-    min-height: 5rem;
   }
 }
 
