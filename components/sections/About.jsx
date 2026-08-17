@@ -4,21 +4,6 @@ import { Reveal } from "../site/Reveal.jsx";
 import { asset } from "@/lib/asset";
 import { person, principles, education } from "@/lib/data";
 
-/* the mono uppercase kicker, matching the hero and the Projects grid */
-const kicker = {
-  background: "none",
-  border: "none",
-  boxShadow: "none",
-  backdropFilter: "none",
-  WebkitBackdropFilter: "none",
-  padding: 0,
-  fontFamily: "var(--font-mono)",
-  fontWeight: "var(--fw-semibold)",
-  letterSpacing: "var(--tracking-wider)",
-  textTransform: "uppercase",
-  color: "var(--accent)",
-};
-
 /* flat surface shared by the panels in this section — no glass, no blur */
 const panel = {
   borderRadius: "var(--radius-xl)",
@@ -41,7 +26,7 @@ export function About() {
       <div className="container">
         <Reveal>
           <div className="section-head section-head-center">
-            <Pill style={kicker}>About</Pill>
+            <Pill>About</Pill>
             <h2 className="section-title section-title-lg">Hey, I&apos;m Mazigh</h2>
             <p className="section-sub">
               Computer vision by training, generalist by habit — and a stubborn

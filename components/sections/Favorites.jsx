@@ -8,9 +8,9 @@ export function Favorites() {
     <section id="favorites" className="section" aria-label="Personal favorites">
       <div className="container">
         <Reveal>
-          <div className="section-head">
+          <div className="section-head section-head-center">
             <Pill>Favorites</Pill>
-            <h2 className="section-title">The personal shelf</h2>
+            <h2 className="section-title section-title-lg">The personal shelf</h2>
             <p className="section-sub">
               Films, albums, sports, games — rated with the seriousness they deserve.
             </p>

@@ -9,9 +9,9 @@ export function Experience() {
     <section id="experience" className="section" aria-label="Work experience">
       <div className="container">
         <Reveal>
-          <div className="section-head">
+          <div className="section-head section-head-center">
             <Pill>Experience</Pill>
-            <h2 className="section-title">Where the systems run</h2>
+            <h2 className="section-title section-title-lg">Where the systems run</h2>
             <p className="section-sub">
               Production work for a national postal service — monitoring, vision, and
               the tooling around them.

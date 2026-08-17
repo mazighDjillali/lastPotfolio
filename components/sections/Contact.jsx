@@ -5,27 +5,14 @@ import { TerminalCard } from "../ds/core/TerminalCard.jsx";
 import { Reveal } from "../site/Reveal.jsx";
 import { person } from "@/lib/data";
 
-const kicker = {
-  background: "none",
-  border: "none",
-  boxShadow: "none",
-  backdropFilter: "none",
-  WebkitBackdropFilter: "none",
-  padding: 0,
-  fontFamily: "var(--font-mono)",
-  fontWeight: "var(--fw-semibold)",
-  letterSpacing: "var(--tracking-wider)",
-  textTransform: "uppercase",
-  color: "var(--accent)",
-};
 export function Contact() {
   return (
     <section id="contact" className="section" aria-label="Contact">
       <div className="container">
         <Reveal>
           <div className="section-head section-head-center">
-            <Pill style={kicker}>Contact</Pill>
-            <h2 className="section-title">Say hello</h2>
+            <Pill>Contact</Pill>
+            <h2 className="section-title section-title-lg">Say hello</h2>
             <p className="section-sub">
               For roles, collaborations, or a good film recommendation.
             </p>

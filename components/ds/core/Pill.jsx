@@ -1,8 +1,10 @@
 import React from "react";
 
 /**
- * Pill — the small glass section-label used above headings
- * ("Currently Building", "Favorites"). Icon + text, fully rounded.
+ * Pill — the section kicker: the small mono, uppercase, accent-coloured label
+ * that sits above every section heading ("STACK", "PROJECTS", "ABOUT"). It's a
+ * typographic label, not a chrome element — no chip, no border, no blur — so
+ * every section head reads as one system.
  */
 export function Pill({ icon, className = "", style = {}, children, ...rest }) {
   return (
@@ -12,24 +14,18 @@ export function Pill({ icon, className = "", style = {}, children, ...rest }) {
         display: "inline-flex",
         alignItems: "center",
         gap: 8,
-        padding: "5px 13px",
-        fontFamily: "var(--font-sans)",
+        fontFamily: "var(--font-mono)",
         fontSize: "var(--fs-xs)",
-        fontWeight: "var(--fw-normal)",
-        letterSpacing: "var(--tracking-wide)",
-        color: "var(--text-secondary)",
-        background: "var(--glass-fill)",
-        border: "1px solid var(--glass-border)",
-        borderRadius: "var(--radius-full)",
-        WebkitBackdropFilter: "var(--glass-backdrop)",
-        backdropFilter: "var(--glass-backdrop)",
-        boxShadow: "var(--glass-specular)",
+        fontWeight: "var(--fw-semibold)",
+        letterSpacing: "var(--tracking-wider)",
+        textTransform: "uppercase",
+        color: "var(--accent)",
         width: "fit-content",
         ...style,
       }}
       {...rest}
     >
-      {icon && <span style={{ display: "inline-flex", color: "var(--accent)" }}>{icon}</span>}
+      {icon && <span style={{ display: "inline-flex" }}>{icon}</span>}
       {children}
     </span>
   );

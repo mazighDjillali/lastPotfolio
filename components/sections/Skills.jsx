@@ -13,9 +13,9 @@ export function Skills() {
     <section id="skills" className="section" aria-label="Skills and technologies">
       <div className="container">
         <Reveal>
-          <div className="section-head">
+          <div className="section-head section-head-center">
             <Pill>Stack</Pill>
-            <h2 className="section-title">Tools I reach for</h2>
+            <h2 className="section-title section-title-lg">Tools I reach for</h2>
           </div>
         </Reveal>
 
