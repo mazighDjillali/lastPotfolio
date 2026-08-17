@@ -528,9 +528,9 @@ img {
 .hero-title {
   max-width: 54rem;
   font-size: clamp(2.4rem, min(6.4vw, 7.2vh), 4.75rem);
-  font-weight: var(--fw-semibold);
-  letter-spacing: -0.028em;
-  line-height: 1.06;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
   color: var(--text-primary);
 }
 
@@ -630,9 +630,10 @@ img {
    The grid row is forced to fill the stage height (grid-template-rows 1fr),
    so the scene column is tall and the desk gets the whole right half. */
 @media (min-width: 861px) {
+  /* 50/50 split, kociaj-style: copy left, desk right */
   .hero-stage {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: minmax(0, 1fr);
     align-items: stretch;
     text-align: left;
@@ -649,6 +650,12 @@ img {
   /* a touch smaller so the headline sits comfortably in half the width */
   .hero-title {
     font-size: clamp(2.2rem, min(4.7vw, 7.2vh), 4.25rem);
+  }
+
+  /* left-aligned lede, no auto-centring, capped for a comfortable measure */
+  .hero-lede {
+    margin-inline: 0;
+    max-width: 34rem;
   }
 
   .hero-actions,
@@ -876,18 +883,29 @@ img {
     gap: var(--space-4);
   }
 
-  /* smaller headline frees vertical space, and .hero-scene (flex:1) absorbs
-     it — so shrinking the text directly enlarges the desk */
+  /* smaller headline frees vertical space so the stacked title + lede + CTAs
+     + desk still fit one screen */
   .hero-title {
     font-size: clamp(1.55rem, 7vw, 2.5rem);
     line-height: 1.1;
   }
 
-  /* the desk keeps its floor; flex:1 lets it grow into the space the smaller
-     title frees up */
+  .hero-lede {
+    font-size: var(--fs-sm);
+  }
+
+  /* stacked, the desk gets a bounded slice of the viewport rather than flexing
+     — the copy above it (now with a lede) needs the room */
   .hero-scene {
-    min-height: 7rem;
-    margin-block: calc(-1 * var(--space-4));
+    flex: 0 0 auto;
+    min-height: 0;
+    height: clamp(8rem, 24vh, 13rem);
+    margin-block: calc(-1 * var(--space-3));
+  }
+
+  /* let the canvas shrink with its box instead of holding its intrinsic size */
+  .desk-scene {
+    min-height: 0;
   }
 
   /* full-width stacked CTAs — the MeetSponsors mobile pattern, and it stops

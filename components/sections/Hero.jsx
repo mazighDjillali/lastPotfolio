@@ -85,6 +85,10 @@ export function Hero() {
             ))}
           </h1>
 
+          <p className="hero-lede hero-enter" style={enter(880)}>
+            {person.about}
+          </p>
+
           <div className="hero-actions hero-enter" style={enter(980)}>
             <Button href="#projects" size="lg" style={pill}>
               See my work
